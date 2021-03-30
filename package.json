@@ -1,0 +1,29 @@
+{
+  "name": "hideaway",
+  "version": "1.0.0",
+  "description": "A MERN stack application that utilizes Google Maps API to find secret and interesting locations near you.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielko14/HideAway.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielko14/HideAway/issues"
+  },
+  "homepage": "https://github.com/danielko14/HideAway#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.5",
+    "mongoose": "^5.12.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
