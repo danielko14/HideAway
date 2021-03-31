@@ -23,6 +23,7 @@ header {
   right: 60px;
   top: 5px;
 }
+
 #login {
   position: absolute;
   right: 65px;
@@ -40,6 +41,7 @@ body {
   height: 450px;
   border-bottom: 2px solid whitesmoke;
   overflow-y: auto;
+  padding-bottom: 5px;
 }
 #single-location {
   text-align: center;
@@ -51,17 +53,27 @@ body {
   border-radius: 100%;
 }
 
+#spotform {
+  padding-top: 5px;
+  height: 60px;
+}
+#location-adder {
+  height: 55px;
+  width: 55px;
+  border-radius: 100%;
+  border: 1px solid yellow;
+  background-color: black;
+  color: whitesmoke;
+}
+
 #spotmap {
   height: 500px;
   border-bottom: 2px solid whitesmoke;
-}
-
-#spotform {
-  height: 250px;
+  padding-bottom: 5px;
 }
 
 footer {
-  height: 120px;
+  height: 60px;
   background-color: black;
   border-top: 2px solid whitesmoke;
   text-align: center;

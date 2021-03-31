@@ -6,6 +6,9 @@ const Footer = () => {
     <div>
       <footer>
         Minimal Viable Product (MVP)
+        <br>
+        </br>
+        HideAway v0.001
       </footer>
     </div>
   )

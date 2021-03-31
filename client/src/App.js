@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import './App.css';
 
 import dummyData from './dummyData.js';
@@ -81,11 +82,11 @@ class App extends React.Component {
             <div id="spotlist">
               <SecretSpotList secretLocations={this.state.secretLocations}/>
             </div>
-            <div id="spotmap">
-              <MapView canAddLocation={this.state.canAddLocation} userLocation={this.state.userCurrentLocation}/>
-            </div>
             <div id="spotform">
               <NewSpotForm handleClick={this.handleAddLocationButton}/>
+            </div>
+            <div id="spotmap">
+              <MapView canAddLocation={this.state.canAddLocation} userLocation={this.state.userCurrentLocation}/>
             </div>
           </div>
           <div id="foot">

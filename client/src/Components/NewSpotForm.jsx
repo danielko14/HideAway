@@ -17,7 +17,7 @@ class NewSpotForm extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.props.handleClick}>
+        <button onClick={this.props.handleClick} id="location-adder">
           Add New Location
         </button>
       </div>
