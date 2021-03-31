@@ -6,10 +6,7 @@ class MapView extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      center: {
-        lat: 30,
-        lng: 98
-      },
+      center: this.props.userLocation,
       containerStyle: {
         width: '100%',
         height: '500px',
@@ -30,7 +27,7 @@ class MapView extends React.Component {
 
       // add warning to assure it is the correct spot
 
-      // if yes display modal to submit new location 
+      // if yes display modal to submit new location
     }
   }
 

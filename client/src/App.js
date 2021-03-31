@@ -16,9 +16,11 @@ class App extends React.Component {
     this.state = {
       secretLocations: dummyData,
       canAddLocation: false,
-      userCurrentLocation: {}
+      userCurrentLocation: {},
+      isLoaded: false
     }
     this.handleAddLocationButton = this.handleAddLocationButton.bind(this);
+    this.getUsersCurrentLocation();
   }
 
   // component did mount
@@ -29,6 +31,29 @@ class App extends React.Component {
     // Map will utilize that to generate map markers that will be animated to come down at different times
     // List display will use the spots to generate a scrollable list
 
+  // Get Users Location
+  getUsersCurrentLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+          this.setState({
+            userCurrentLocation: pos,
+            isLoaded: true
+          })
+        }
+      );
+    }
+  }
+
+  // Get secret spots from database
+  getSecretSpots() {
+
+  }
+
   handleAddLocationButton(e) {
     e.preventDefault();
     this.setState({
@@ -37,27 +62,35 @@ class App extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <div id="head">
-        <Header />
-        </div>
-        <div id="body">
-          <div id="spotlist">
-            <SecretSpotList secretLocations={this.state.secretLocations}/>
+    if (this.state.isLoaded) {
+      return (
+        <div>
+          <div id="head">
+          <Header />
           </div>
-          <div id="spotmap">
-            <MapView canAddLocation={this.state.canAddLocation}/>
+          <div id="body">
+            <div id="spotlist">
+              <SecretSpotList secretLocations={this.state.secretLocations}/>
+            </div>
+            <div id="spotmap">
+              <MapView canAddLocation={this.state.canAddLocation} userLocation={this.state.userCurrentLocation}/>
+            </div>
+            <div id="spotform">
+              <NewSpotForm handleClick={this.handleAddLocationButton}/>
+            </div>
           </div>
-          <div id="spotform">
-            <NewSpotForm handleClick={this.handleAddLocationButton}/>
+          <div id="foot">
+          <Footer />
           </div>
         </div>
-        <div id="foot">
-        <Footer />
+      )
+    } else {
+      return (
+        <div>
+          Loading...
         </div>
-      </div>
-    )
+      )
+    }
   }
 }
 
