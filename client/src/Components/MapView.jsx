@@ -1,5 +1,5 @@
 import React from 'react';
-import APIKEY from '../config.js';
+//import APIKEY from '../config.js';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
 
 class MapView extends React.Component {
@@ -17,18 +17,7 @@ class MapView extends React.Component {
   }
 
   handleMapClick(event) {
-    if (this.props.canAddLocation) {
-      console.log('Clicked!')
-      console.log(event.latLng.toJSON())
-      // the above returns {lat: 30.01783796995174, lng: 97.76585388183595}
-      // on map click after clicking Add New Location
-
-      // add marker to map
-
-      // add warning to assure it is the correct spot
-
-      // if yes display modal to submit new location
-    }
+    console.log(event.latLng.toJSON());
   }
 
   render() {
@@ -39,9 +28,8 @@ class MapView extends React.Component {
         <GoogleMap
           mapContainerStyle={this.state.containerStyle}
           center={this.state.center}
-          zoom={10}
+          zoom={12}
           onClick={this.handleMapClick}
-
         >
           { /* Child components, such as markers, info windows, etc. */ }
           <></>

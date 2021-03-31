@@ -5,7 +5,7 @@ const Locations = require('../models/SecretLocation.js');
 
 postNewLocationRouter.post('/newSpot', async(req, res) => {
   let id = await Locations.countDocuments();
-  let name = req.body.name;
+  let name = await req.body.name;
   let description = req.body.description;
   let founder = req.body.founder;
   let location = req.body.location;

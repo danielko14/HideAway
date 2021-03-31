@@ -4,10 +4,12 @@ const mongoose = require('mongoose');
 const Locations = require('../models/SecretLocation.js');
 
 getSecretLocationsRouter.get('/secretSpots', async(req,res) => {
-  let userLocation = req.body.userLocation;
+  let userLocation = req.query;
   // Get userlat and lng
-  let lat = userLocation.lat;
-  let lng = userLocation.lng;
+  let lat = parseFloat(userLocation.lat);
+  let lng = parseFloat(userLocation.lng);
+  console.log(lat);
+  console.log(lng);
   // Get higher and lower bounds for filtering locations
   let upperLat = lat + 0.50;
   let lowerLat = lat - 0.50;
@@ -23,10 +25,10 @@ getSecretLocationsRouter.get('/secretSpots', async(req,res) => {
   // find locations filter = userLatitude - 0.25deg <= LATITUDE <= userLatitude + 0.25deg && userLongitude - 0.25deg <= LONGITUDE <= userLongitude + 0.25deg
   // add indexing to location since we are querying by location
   try {
-    const locations = await Locations.find({ location: {
-      lat: lowerLat <= lat <= upperLat,
-      lng: lowerLng <= lng <= upperLng
-    }});
+    const locations = await Locations.find({
+      'location.lat': { '$gte' : lowerLat, '$lte' : upperLat},
+      'location.lng': { '$gte' : lowerLng, '$lte' : upperLng}
+    });
     res.send(locations);
   }
   catch(err) {

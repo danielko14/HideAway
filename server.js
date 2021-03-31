@@ -1,14 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors')
 
 const postNewLocationRouter = require('./API/PostNewLocation.js');
 const getSecretLocationsRouter = require('./API/GetSecretLocations.js');
 
 const app = express();
-const PORT = 3015;
+const PORT = 3001;
 
-app.use(express.json());
+app.use(cors());
+//app.use(express.json());
+app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', postNewLocationRouter);
 app.use('/', getSecretLocationsRouter);
 

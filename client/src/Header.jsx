@@ -10,9 +10,6 @@ const Header = () => {
           <br></br>
           Away
         </div>
-        <div id="header-icon">
-          Icon
-        </div>
         <div id="sign-up">
           <button>
             <em>Sign-up</em>

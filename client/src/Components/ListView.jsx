@@ -6,7 +6,7 @@ const SecretSpotList = ({ secretLocations }) => {
   return secretLocations.map((location) => {
     return (
       <div>
-        <ListItem location={location}/>
+        <ListItem location={location} key={location.id}/>
       </div>
     )
   })
