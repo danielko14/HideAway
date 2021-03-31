@@ -46,6 +46,15 @@ class App extends React.Component {
           })
         }
       );
+    } else {
+      const galvanizeAustin = {
+        lat: 30.265552883674495,
+        lng: -97.74968563426717
+      }
+      this.setState({
+        userCurrentLocation: galvanizeAustin,
+        isLoaded: true
+      })
     }
   }
 
