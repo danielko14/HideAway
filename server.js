@@ -2,8 +2,16 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+const postNewLocationRouter = require('./API/PostNewLocation.js');
+const getSecretLocationsRouter = require('./API/GetSecretLocations.js');
+
 const app = express();
 const PORT = 3015;
+
+app.use(express.json());
+app.use('/', postNewLocationRouter);
+app.use('/', getSecretLocationsRouter);
+
 const url = 'mongodb://localhost/MVP';
 
 mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParser: true });
@@ -15,10 +23,6 @@ connection.on('open', () => {
 
 app.get('/', (req, res) => {
   res.send('Serving HideAway v0.00');
-});
-
-app.get('/secretSpots', (req, res) => {
-  // this is for goodlemapsAPI
 });
 
 app.listen(PORT, ()=>{

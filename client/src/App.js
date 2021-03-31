@@ -65,8 +65,11 @@ class App extends React.Component {
   // Get secret spots from database
     // send to correct path/ send users currentLocation as well to only pull relevant results
   getSecretSpots(userLocation) {
+    console.log(userLocation);
     axios.get('/secretSpots', {
-      userLocation: userLocation
+      body: {
+        userLocation: userLocation
+      }
     })
     .then((response) => {
       let secretLocations = response.data;

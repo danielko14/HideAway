@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Any = new Schema({ any: {} })
+const Mixed = mongoose.Schema.Types.Mixed;
 
 const secretLocationSchema = new mongoose.Schema({
   id: {
@@ -31,7 +31,7 @@ const secretLocationSchema = new mongoose.Schema({
     required: true
   },
   difficulty: {
-    type: Any,
+    type: Mixed,
     required: true
   },
   popularity: {
@@ -47,7 +47,7 @@ const secretLocationSchema = new mongoose.Schema({
     required: true
   },
   location: {
-    type: Any,
+    type: Mixed,
     required: true
   }
 }, { collection: 'Locations'});
