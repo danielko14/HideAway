@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <div>
       <footer>
-      This is the Footer
+        Minimal Viable Product (MVP)
       </footer>
     </div>
   )
