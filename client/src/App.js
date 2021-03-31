@@ -21,16 +21,19 @@ class App extends React.Component {
       isLoaded: false
     }
     this.handleAddLocationButton = this.handleAddLocationButton.bind(this);
-    this.getUsersCurrentLocation();
+    // add below to component did mount after database creation and successful path build
   }
 
   // component did mount
-    // use google map api geolocation to ping for users location
-    // once location is received set that as the center of the map and pass that prop down to mapDisplay
-    // This should also send a query to database to find secret spots closest to this users location (Have query return ten pins)
+    // use google map api geolocation to ping for users location DONE
+    // once location is received set that as the center of the map and pass that prop down to mapDisplay DONE
+    // This should also send a query to database to find secret spots closest to this users location (Have query return ten pins) IN PROGRESS
     // Pass the secret spots down to ListView and mapDisplay
     // Map will utilize that to generate map markers that will be animated to come down at different times
     // List display will use the spots to generate a scrollable list
+  componentDidMount() {
+    this.getUsersCurrentLocation();
+  }
 
   // Get Users Location
   getUsersCurrentLocation() {
@@ -41,6 +44,7 @@ class App extends React.Component {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           };
+          this.getSecretSpots(pos);
           this.setState({
             userCurrentLocation: pos,
             isLoaded: true
@@ -54,14 +58,27 @@ class App extends React.Component {
       }
       this.setState({
         userCurrentLocation: galvanizeAustin,
-        isLoaded: true
       })
     }
   }
 
   // Get secret spots from database
-  getSecretSpots() {
-
+    // send to correct path/ send users currentLocation as well to only pull relevant results
+  getSecretSpots(userLocation) {
+    axios.get('/secretSpots', {
+      userLocation: userLocation
+    })
+    .then((response) => {
+      let secretLocations = response.data;
+      this.setState({
+        secretLocations: secretLocations,
+        // once locations and user location has loaded render will begin
+        isLoaded: true
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   }
 
   handleAddLocationButton(e) {
