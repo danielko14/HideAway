@@ -5,7 +5,7 @@ const ListItem = ({ location }) => {
   return (
     <div id="single-location">
       <div>
-      <img id="location-image" alt="unavailable"></img>
+      <img id="location-image" alt=""></img>
       </div>
       <h3>
         {location.name}

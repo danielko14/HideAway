@@ -1,6 +1,7 @@
 import React from 'react';
-//import APIKEY from '../config.js';
+import APIKEY from '../config.js';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import MarkerSetter from './MarkerSetter.jsx';
 
 class MapView extends React.Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class MapView extends React.Component {
     this.state = {
       center: this.props.userLocation,
       containerStyle: {
-        width: '100%',
+        width: '60%',
         height: '500px',
       },
     }
@@ -16,22 +17,28 @@ class MapView extends React.Component {
     this.handleMapClick = this.handleMapClick.bind(this);
   }
 
-  handleMapClick(event) {
-    console.log(event.latLng.toJSON());
+  handleMapClick(MapMouseEvent) {
+    console.log(MapMouseEvent.latLng.toJSON());
+
+  }
+
+  placeMarker(position) {
+   
   }
 
   render() {
     return (
       <LoadScript
-        //googleMapsApiKey={APIKEY}
+        googleMapsApiKey={APIKEY}
       >
         <GoogleMap
           mapContainerStyle={this.state.containerStyle}
           center={this.state.center}
-          zoom={12}
+          zoom={10}
           onClick={this.handleMapClick}
         >
           { /* Child components, such as markers, info windows, etc. */ }
+        <MarkerSetter locations={this.props.secretLocations}/>
           <></>
         </GoogleMap>
       </LoadScript>
